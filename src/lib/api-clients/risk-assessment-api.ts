@@ -1,5 +1,6 @@
 
 import { createApiClient } from "../api-utils";
+import { supabase } from "@/integrations/supabase/client";
 
 export type RiskAssessment = {
   id: string;

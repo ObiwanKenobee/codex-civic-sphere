@@ -31,18 +31,28 @@ export const getMetricsByType = async (metricType: string) => {
 };
 
 export const getMetricSummary = async () => {
+  // Modified to use a compatible approach for grouping
   const { data, error } = await supabase
     .from("esg_metrics")
-    .select(`
-      metric_type,
-      count(*),
-      avg(metric_value)
-    `)
-    .group("metric_type");
+    .select('metric_type, metric_value');
   
   if (error) {
     throw new Error("Failed to get metric summary");
   }
   
-  return data;
+  // Process the data client-side to calculate averages and counts
+  const summary = data.reduce((acc: Record<string, { count: number, sum: number }>, curr) => {
+    if (!acc[curr.metric_type]) {
+      acc[curr.metric_type] = { count: 0, sum: 0 };
+    }
+    acc[curr.metric_type].count++;
+    acc[curr.metric_type].sum += curr.metric_value;
+    return acc;
+  }, {});
+  
+  return Object.entries(summary).map(([metric_type, { count, sum }]) => ({
+    metric_type,
+    count,
+    avg: sum / count
+  }));
 };

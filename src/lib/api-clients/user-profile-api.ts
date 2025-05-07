@@ -1,5 +1,6 @@
 
 import { createApiClient } from "../api-utils";
+import { supabase } from "@/integrations/supabase/client";
 
 export type UserProfile = {
   id: string;
@@ -33,5 +34,3 @@ export const getCurrentUserProfile = async () => {
   
   return data as UserProfile;
 };
-
-// Include any specific methods for the user profiles here

@@ -1,11 +1,12 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
-import { UserNav } from "@/components/user-nav"
-import { MobileNav } from "@/components/mobile-nav"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Menu } from "lucide-react";
 
 const Navigation = () => {
-  // Add any state variables or functions here if needed
-
   return (
     <nav className="border-b bg-background">
       <div className="flex h-16 items-center px-4 container mx-auto">
@@ -51,8 +52,27 @@ const Navigation = () => {
           </div>
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <UserNav />
-          <MobileNav />
+          {/* User dropdown menu */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                <Avatar className="h-9 w-9">
+                  <AvatarImage src="/placeholder.svg" alt="User" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuItem>Logout</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
+          {/* Mobile menu button */}
+          <Button variant="ghost" className="md:hidden" size="icon">
+            <Menu className="h-5 w-5" />
+          </Button>
         </div>
       </div>
     </nav>
