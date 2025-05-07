@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Codex Novum custom colors
+				codex: {
+					'brown': '#8D6E63',    // Earth Brown (Ethical Logic)
+					'blue': '#1E3A8A',     // Deep Blue (Civic Action)
+					'gold': '#D4AF37',     // Gold (Education)
+					'red': '#DC2626',      // Signal Red (Conflict)
+					'green': '#556B2F',    // Olive Green (Peace)
+					'light-brown': '#BCAAA4',
+					'light-blue': '#BFDBFE',
+					'light-gold': '#FEF3C7',
+					'light-red': '#FEE2E2',
+					'light-green': '#D1FAE5'
 				}
 			},
 			borderRadius: {
@@ -84,11 +98,26 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out'
+			},
+			fontFamily: {
+				'serif': ['Playfair Display', 'serif'],
+				'sans': ['Inter', 'sans-serif']
 			}
 		}
 	},
