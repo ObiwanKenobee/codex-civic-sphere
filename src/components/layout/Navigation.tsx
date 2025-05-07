@@ -1,86 +1,60 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import { UserNav } from "@/components/user-nav"
+import { MobileNav } from "@/components/mobile-nav"
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, Book, Vote, Settings, Home, MessageSquare } from 'lucide-react';
-
-const Navigation: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navigationItems = [
-    { name: 'Home', path: '/', icon: Home },
-    { name: 'Laws', path: '/laws', icon: Book },
-    { name: 'Vote', path: '/vote', icon: Vote },
-    { name: 'Learn', path: '/learn', icon: Book },
-    { name: 'Civic AI', path: '/ai', icon: MessageSquare },
-  ];
+const Navigation = () => {
+  // Add any state variables or functions here if needed
 
   return (
-    <nav className="bg-white border-b border-gray-200 py-4 px-6">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center space-x-2">
-          <span className="font-serif text-2xl font-bold text-codex-blue">Codex Novum</span>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8">
-          {navigationItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className="font-medium text-gray-600 hover:text-codex-blue flex items-center space-x-1"
+    <nav className="border-b bg-background">
+      <div className="flex h-16 items-center px-4 container mx-auto">
+        <div className="flex items-center">
+          <Link to="/" className="flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-6 w-6 mr-2"
             >
-              <item.icon size={18} />
-              <span>{item.name}</span>
-            </Link>
-          ))}
-        </div>
-
-        <div className="hidden md:flex items-center space-x-4">
-          <Link 
-            to="/profile" 
-            className="flex items-center space-x-2 px-4 py-2 rounded-md bg-gray-100 hover:bg-gray-200"
-          >
-            <Settings size={18} />
-            <span>Profile</span>
+              <path d="M12 2 2 7l10 5 10-5-10-5Z" />
+              <path d="M2 17 12 22l10-5" />
+              <path d="M2 12 12 17l10-5" />
+            </svg>
+            <span className="text-xl font-bold mr-6">Codex</span>
           </Link>
         </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-gray-600"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white py-4 px-6 shadow-lg rounded-lg mt-2 absolute right-4 left-4 z-10 animate-fade-in">
-          <div className="flex flex-col space-y-4">
-            {navigationItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className="font-medium text-gray-600 hover:text-codex-blue flex items-center space-x-2 py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <item.icon size={18} />
-                <span>{item.name}</span>
-              </Link>
-            ))}
-            <hr className="my-2" />
-            <Link
-              to="/profile"
-              className="font-medium text-gray-600 hover:text-codex-blue flex items-center space-x-2 py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <Settings size={18} />
-              <span>Profile</span>
+        <div className="hidden md:flex md:flex-1">
+          <div className="flex items-center space-x-4">
+            <Link to="/" className="text-sm font-medium transition-colors hover:text-primary">
+              Home
+            </Link>
+            <Link to="/laws" className="text-sm font-medium transition-colors hover:text-primary">
+              Laws
+            </Link>
+            <Link to="/vote" className="text-sm font-medium transition-colors hover:text-primary">
+              Vote
+            </Link>
+            <Link to="/learn" className="text-sm font-medium transition-colors hover:text-primary">
+              Learn
+            </Link>
+            <Link to="/ai" className="text-sm font-medium transition-colors hover:text-primary">
+              AI
+            </Link>
+            <Link to="/api-examples" className="text-sm font-medium transition-colors hover:text-primary">
+              API Demo
             </Link>
           </div>
         </div>
-      )}
+        <div className="ml-auto flex items-center gap-2">
+          <UserNav />
+          <MobileNav />
+        </div>
+      </div>
     </nav>
   );
 };

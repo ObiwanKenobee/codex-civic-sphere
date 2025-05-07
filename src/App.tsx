@@ -11,6 +11,7 @@ import Learn from "./pages/Learn";
 import AI from "./pages/AI";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import ApiExamples from "./pages/api-examples";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/learn" element={<Learn />} />
           <Route path="/ai" element={<AI />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/api-examples" element={<ApiExamples />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
